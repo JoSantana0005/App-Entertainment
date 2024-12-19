@@ -4,6 +4,7 @@
     --FontColor: #eee;
     --BorderColor: #29272c;
     --HoverColor: #2f1066;
+    --TertiaryColor: #6C2905;
 }
 *{
     margin: 0%;
@@ -12,8 +13,8 @@
 }
 main{
     border: 1px solid var(--FontColor);
-    width: 100%;
-    padding: 2px;
+    width: 95%;
+    padding: 5px;
     display: flex;
     flex-flow: column wrap;
     justify-content: left;
@@ -22,13 +23,12 @@ main{
 main .Search{
     width: 100%;
     height: 25px;
-    padding: 15px;
+    padding: 3px;
     display: flex;
     align-items: center;
     justify-content: left;
 }
 main section{
-    border: 1px solid var(--FontColor);
     width: 100%;
     height: 270px;
 }
@@ -50,4 +50,187 @@ main .Search input:focus{
 }
 main .Search input:hover{
     background-color: #0b0608;
+}
+main .Trending{
+    padding: 5px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: left;
+    gap: 8px;
+}
+main .Trending .Title--section{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+    border-bottom: 2px solid var(--FontColor);
+}
+main .Trending .Title--section h2{
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: var(--FontColor);
+
+}
+main .Trending .Title--section div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100px;
+}
+main .Trending .Title--section svg{
+    cursor: pointer;
+    transition: .1s linear;
+}
+main .Trending .Title--section svg:hover{
+    padding: 2px;
+    fill: var(--TertiaryColor);
+}
+main .Trending .Trending--movies{
+    width: 100%;
+    height: 205px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+main .Trending .Trending--movies::-webkit-scrollbar{
+    display: none;
+}
+main .Trending .Trending--movies .List{
+    display: flex;
+    gap: 4px;
+    
+}
+main .Trending .Trending--movies .List .Movies{
+    width: 318px;
+    padding: 3px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: left;
+}
+main .Trending .Trending--movies .List .Movies img{
+    border: 1px solid var(--BorderColor);
+    width: 100%;
+    height: 145px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .1s linear;
+}
+main .Trending .Trending--movies .List .Movies img:hover{
+    padding: 2px;
+    border: 1px solid var(--HoverColor);
+}
+main .Trending .Trending--movies .List .Movies div{
+    border-bottom: 1px solid var(--BorderColor);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    padding-right: 12px;
+    align-items: center;
+    padding: 3px;
+    
+}
+main .Trending .Trending--movies .List .Movies div span{
+    font-size: 0.9em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #ccc;
+}
+main .Trending .Trending--movies .List .Movies h4{
+    font-size: 1.3em;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    color: var(--FontColor);
+    padding-left: 3px;
+}
+main .Recomend{
+    display: flex;
+    flex-flow: column wrap;
+    padding: 5px;
+    width: 100%;
+    justify-content: left;
+    gap: 2px;
+    position: relative;
+    top: -25px;
+}
+main .Recomend h2{
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--FontColor);
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--FontColor);
+}
+main .Recomend .Recomend--movies{
+    height: 225px;
+    width: 100%;
+    padding: 2px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-flow: column wrap;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+main .Recomend .Recomend--movies::-webkit-scrollbar{
+    width: 8px;
+    background-color: transparent;
+}
+main .Recomend .Recomend--movies::-webkit-scrollbar-thumb{
+    background-color: var(--BorderColor);
+}
+main .Recomend .Recomend--movies .List--Movies{
+    display: flex;
+    width: 100%;
+    gap: 4px;
+    flex-flow: row wrap;
+    justify-content: left;
+}
+main .Recomend .Recomend--movies .List--Movies .Movie-recomend{
+    width: 315px;
+    margin-top: 2px;
+    height: 185px;
+    padding: 2px;
+    display: flex;
+    flex-flow: column wrap; 
+    gap: 2px;
+}
+main .Recomend .Recomend--movies .List--Movies .Movie-recomend img{
+    border: 2px solid var(--BorderColor);
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .1s linear;
+}
+main .Recomend .Recomend--movies .List--Movies .Movie-recomend img:hover{
+    padding: 2px;
+    border: 2px solid var(--HoverColor);
+}
+main .Recomend .Recomend--movies .List--Movies .Movie-recomend div{
+    border-bottom: 1px solid var(--BorderColor);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3px;
+}
+main .Recomend .Recomend--movies .List--Movies .Movie-recomend div span{
+    font-size: 0.9em;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+main .Recomend .Recomend--movies .List--Movies h4{
+    font-size: 1.3em;
+    color: var(--FontColor);
+    max-width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
 }
