@@ -1,2 +1,9 @@
 # App-Entertainment
- This application through an API you will get the best movies, series and television programs most notable at this time
+ <table>
+  <td align="Justify">
+   This application through an API you will get the best movies, series and television programs most notable at this time
+  </td>
+  <td align="center">
+   <img src="https://media0.giphy.com/media/XZ0lh4zVU9fOuBAZK5/200.gif?cid=6c09b952lnl3etuaq2qsnw8dfumf8mza39ro1vytx56025kd&ep=v1_gifs_search&rid=200.gif&ct=g" width = 100%>
+  </td>
+ </table>
