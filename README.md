@@ -2,10 +2,12 @@
  <table>
   <td align="justify" width=40%>
   This application through an API you will get the best movies, series and television programs most notable at this time, in addition to adding your favorite movies or series in a list of |   your favorite movies, series or programs, we will use the following languages:
+   <hr>
    <div align="center">
      <img src="https://i.ibb.co/pKKrwn3/javascript-js-icon-2048x2048-nyxvtvk0.png" witdh="60px" height="60px">
      <img src="https://i.ibb.co/tL1v6Jt/html-5.png" witdh="60px" height="60px">
-     <img src="https://i.ibb.co/j86Drxg/css-3.png" witdh="60px" height="60px">  
+     <img src="https://i.ibb.co/j86Drxg/css-3.png" witdh="60px" height="60px">
+     <img src="https://i.ibb.co/0XzbYsZ/vscode-icons-file-type-light-json.png" witdh="60px" height="60px">
    </div>
   </td>
   <td width=60%>
