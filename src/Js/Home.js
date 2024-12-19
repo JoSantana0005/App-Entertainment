@@ -1,6 +1,8 @@
 let page = 1;
 const arrow_left = document.getElementById('Arrow_left');
 const arrow_right = document.getElementById('Arrow_right');
+let trending = document.getElementById('Trending');
+// Eventos para cambiar el contenido de la pagina
 arrow_left.addEventListener('click',()=>{
     page--;
     obtener_peliculas();
@@ -9,6 +11,37 @@ arrow_right.addEventListener('click',()=>{
     page++;
     obtener_peliculas();
 })
+// Function para mover la seccion de los trendings
+function Arrow_left(){
+    const arrow = document.getElementById('Arrow_left_Movies')
+    arrow.addEventListener('click',()=>{
+        if(arrow){
+            trending.scrollLeft -= 320
+        }else{
+            console.log("Hubo un error")
+        }
+    })
+}
+function Arrow_right(){
+    const arrow = document.getElementById('Arrow_right_Movies')
+    arrow.addEventListener('click',()=>{
+        if(arrow){
+            trending.scrollLeft += 320
+        }else{
+            console.log("Hubo un error")
+        }
+    })
+}
+// Funcion que obtuiene el tipo de clasificacion de la pelicula
+function ClasiMovie(Vote){
+    if(Vote >= 8){
+        return "PG-13"
+    }else if(Vote >= 5){
+        return "PG"
+    }else{
+        return "R"
+    }
+}
 //Llave de la api
 const key = 'a123512ad7d1eb8f1ff144501c87ec1a';
 // Solicitud a la api de las peliculas vas populares en estos momentos
@@ -23,11 +56,11 @@ const obtener_peliculas_populares = async() =>{
                 movie += `<div class="Movies">
                         <img src="https://image.tmdb.org/t/p/w500/${pelicula.backdrop_path}" alt="Logo">
                         <div>
-                            <span id="Fecha">${pelicula.release_date}</span>
-                            <span id="Categoria">Movie</span>
-                            <span id="Tipo">PG</span>
+                            <span id="Fecha">${pelicula.release_date || pelicula.first_air_date}</span>
+                            <span id="Categoria">${pelicula.media_type}</span>
+                            <span id="Tipo">${ClasiMovie(pelicula.vote_average)}</span>
                         </div>
-                        <h4>${pelicula.title}</h4>
+                        <h4>${pelicula.title || pelicula.name}</h4>
                     </div>`
             });
             document.getElementById('List_Movie').innerHTML = movie
@@ -52,7 +85,7 @@ const obtener_peliculas = async() =>{
                     <div>
                         <span id="Fecha--estreno">${Popular.release_date || Popular.first_air_date}</span>
                         <span id="Catagoria--movie">${Popular.media_type}</span>
-                        <span id="Tipo--movie">PG</span>
+                        <span id="Tipo--movie">${ClasiMovie(Popular.vote_average)}</span>
                     </div>
                     <h4>${Popular.title || Popular.name}</h4>
                 </div>`;
@@ -65,3 +98,5 @@ const obtener_peliculas = async() =>{
 }
 obtener_peliculas_populares();
 obtener_peliculas();
+Arrow_left();
+Arrow_right();

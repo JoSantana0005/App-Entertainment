@@ -79,11 +79,11 @@ main .Trending .Title--section div{
     align-items: center;
     width: 100px;
 }
-main .Trending .Title--section svg{
+svg{
     cursor: pointer;
     transition: .1s linear;
 }
-main .Trending .Title--section svg:hover{
+svg:hover{
     padding: 2px;
     fill: var(--TertiaryColor);
 }
@@ -151,7 +151,6 @@ main .Recomend{
     display: flex;
     flex-flow: column wrap;
     padding: 5px;
-    
     width: 100%;
     justify-content: left;
     gap: 2px;
