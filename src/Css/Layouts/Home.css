@@ -1,11 +1,53 @@
 :root{
     --PrimaryColor: #090a1e;
-    --SecondaryColor: #1b1c3d;
+    --SecondaryColor: #00031a;
     --FontColor: #eee;
-    --BorderColor: #ddd;
+    --BorderColor: #29272c;
+    --HoverColor: #2f1066;
 }
 *{
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
+}
+main{
+    border: 1px solid var(--FontColor);
+    width: 100%;
+    padding: 2px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: left;
+    gap: 5px;
+}
+main .Search{
+    width: 100%;
+    height: 25px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+main section{
+    border: 1px solid var(--FontColor);
+    width: 100%;
+    height: 270px;
+}
+main .Search input{
+    padding: 6px 10px;
+    width: 80%;
+    height: 30px;
+    background-color: var(--BorderColor);
+    border: none;
+    font-size: 0.9em;
+    border-radius: 10px;
+    transition: .1s linear;
+}
+main .Search input::placeholder{
+    color: var(--FontColor);
+}
+main .Search input:focus{
+    background-color: #0b0608;
+}
+main .Search input:hover{
+    background-color: #0b0608;
 }

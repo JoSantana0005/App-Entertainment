@@ -1,8 +1,9 @@
 :root{
     --PrimaryColor: #090a1e;
-    --SecondaryColor: #1b1c3d;
+    --SecondaryColor: #00031a;
     --FontColor: #eee;
-    --BorderColor: #ddd;
+    --BorderColor: #29272c;
+    --HoverColor: #2f1066;
 }
 *{
     margin: 0%;

@@ -1,8 +1,8 @@
 :root{
     --PrimaryColor: #090a1e;
-    --SecondaryColor: #1b1c3d;
+    --SecondaryColor: #00031a ;
     --FontColor: #eee;
-    --BorderColor: #ddd;
+    --BorderColor: #29272c;
 }
 *{
     margin: 0%;
@@ -12,4 +12,6 @@
 body{
     background-color: var(--PrimaryColor);
     overflow: auto;
+    display: flex;
+    
 }

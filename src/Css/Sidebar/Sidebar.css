@@ -1,8 +1,9 @@
 :root{
     --PrimaryColor: #090a1e;
-    --SecondaryColor: #1b1c3d;
+    --SecondaryColor: #00031a;
     --FontColor: #eee;
-    --BorderColor: #ddd;
+    --BorderColor: #29272c;
+    --HoverColor: #2f1066;
 }
 *{
     margin: 0%;
@@ -11,5 +12,62 @@
 }
 nav{
     border: 1px solid var(--BorderColor);
-    width: 10%;
+    width: 5%;
+    border-radius: 5px;
+    background-color: var(--SecondaryColor);
+    max-height: 100%;
+    height: 100vh;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+nav img{
+    width: 100%;
+    height: 55px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .1s linear;
+}
+nav img:hover{
+    padding: 2px;
+}
+nav ul{
+    list-style: none;
+    width: 100%;
+    height: 380px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+nav ul li{
+    margin: 15px 0;
+    padding: 5px;
+}
+nav ul li a{
+    text-decoration: none;
+}
+nav ul li a svg{
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    transition: .1s linear;
+}
+nav ul li a svg:hover{
+    padding: 2px;
+    border: 1px solid #ccc;
+    fill: var(--HoverColor)
+}
+nav .Imagen--User{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+nav .Imagen--User img{
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    border: 1px solid var(--BorderColor);
 }
