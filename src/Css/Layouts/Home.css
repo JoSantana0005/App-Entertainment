@@ -151,18 +151,29 @@ main .Recomend{
     display: flex;
     flex-flow: column wrap;
     padding: 5px;
+    
     width: 100%;
     justify-content: left;
     gap: 2px;
     position: relative;
     top: -25px;
 }
-main .Recomend h2{
+main .Recomend .Title--recomend{
+    border-bottom: 2px solid var(--FontColor);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+main .Recomend .Title--recomend h2{
     font-size: 1.5em;
     font-weight: 500;
-    color: var(--FontColor);
     letter-spacing: 1px;
-    border-bottom: 2px solid var(--FontColor);
+    color: var(--FontColor);
+}
+main .Recomend .Title--recomend div{
+    width: 100px;
+    display: flex;
+    justify-content: space-evenly;
 }
 main .Recomend .Recomend--movies{
     height: 225px;
