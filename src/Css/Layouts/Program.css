@@ -10,3 +10,107 @@
     padding: 0%;
     box-sizing: border-box;
 }
+main{
+    border: 1px solid var(--FontColor);
+    width: 100%;
+    padding: 2px;
+    display: flex;
+    justify-content: left;
+    color: var(--FontColor);
+}
+main section{
+    border: 1px solid var(--FontColor);
+    width: 100%;
+    height: 100%;
+    padding: 3px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 5px;
+}
+main section .Title--section{
+    border-bottom: 1px solid var(--FontColor);
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
+main section .Title--section h1{
+    font-size: 1.8em;
+    letter-spacing: 1px;
+    font-weight: 500;
+    padding-left: 10px;
+}
+main section .Title--section div{
+    width: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+main section .List--series{
+    width: 100%;
+    height: 530px;
+    padding: 3px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: left;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+main section .List--series::-webkit-scrollbar{
+    width: 8px;
+    background-color: transparent;
+}
+main section .List--series::-webkit-scrollbar-thumb{
+    background-color: var(--FontColor);
+}
+main section .List--series .Series{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 3px;
+    padding: 2px;
+    justify-content: center;
+}
+main section .List--series .Series .Series--List{
+    width: 300px;
+    height: 185px;
+    margin-left: 15px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 2px;
+    justify-content: left;
+}
+main section .List--series .Series .Series--List img{
+    border: 2px solid var(--FontColor);
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .1s linear;
+}
+main section .List--series .Series .Series--List img:hover{
+    padding: 2px;
+    border: 2px solid var(--HoverColor);
+}
+main section .List--series .Series .Series--List div{
+    border-bottom: 2px solid var(--FontColor);
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+main section .List--series .Series .Series--List div span{
+    font-size: 0.9em;
+    color: #ccc;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+main section .List--series .Series .Series--List h4{
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    font-weight: 500;
+    max-width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
