@@ -7,7 +7,7 @@
      <img src="https://i.ibb.co/pKKrwn3/javascript-js-icon-2048x2048-nyxvtvk0.png" witdh="60px" height="60px">
      <img src="https://i.ibb.co/tL1v6Jt/html-5.png" witdh="60px" height="60px">
      <img src="https://i.ibb.co/j86Drxg/css-3.png" witdh="60px" height="60px">
-     <img src="https://i.ibb.co/0XzbYsZ/vscode-icons-file-type-light-json.png" witdh="60px" height="60px">
+     <img src="https://nexwebsites.com/images/blog/api.png" witdh="60px" height="60px">
    </div>
   </td>
   <td width=60%>
