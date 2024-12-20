@@ -1,7 +1,39 @@
 let page = 1;
 const arrow_left = document.getElementById('Arrow_left');
 const arrow_right = document.getElementById('Arrow_right');
-let trending = document.getElementById('Trending');
+const trending = document.getElementById('Trending');
+let movies_and_series = [];
+// Evento para actaulizar el contenido
+function ActaulizarContent(){
+    document.getElementsByClassName('Trending')[0].innerHTML = `<article class="Title--section">
+                <h2>Trending</h2>
+                <div>
+                    <svg id="Arrow_left_Movies" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
+                    </svg>
+                    <svg id="Arrow_right_Movies" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/>
+                    </svg>
+                </div>
+            </article>
+            <article class="Trending--movies" id="Trending">
+                <div class="List" id="List_Movie"></div>
+            </article>`
+    document.getElementsByClassName('Recomend')[0].innerHTML = `<article class="Title--recomend">
+                <h2>Recommended of you</h2>
+                <div>
+                    <svg id="Arrow_left" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
+                    </svg>
+                    <svg id="Arrow_right" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/>
+                    </svg>
+                </div>
+            </article>
+            <article class="Recomend--movies" id="Recomend--movies">
+                <div class="List--Movies" id="List--Movies"></div>
+            </article>`
+}
 // Eventos para cambiar el contenido de la pagina
 arrow_left.addEventListener('click',()=>{
     page--;
@@ -11,27 +43,60 @@ arrow_right.addEventListener('click',()=>{
     page++;
     obtener_peliculas();
 })
+
 // Function para mover la seccion de los trendings
-function Arrow_left(){
-    const arrow = document.getElementById('Arrow_left_Movies')
-    arrow.addEventListener('click',()=>{
-        if(arrow){
-            trending.scrollLeft -= 320
-        }else{
-            console.log("Hubo un error")
-        }
-    })
-}
-function Arrow_right(){
-    const arrow = document.getElementById('Arrow_right_Movies')
-    arrow.addEventListener('click',()=>{
-        if(arrow){
+const arrow_L = document.getElementById('Arrow_left_Movies')
+arrow_L.addEventListener('click',()=>{
+    if(arrow_L){
+        trending.scrollLeft -= 320
+    }else{
+        console.log("Hubo un error")
+    }
+})
+
+const arrow_R = document.getElementById('Arrow_right_Movies')
+arrow_R.addEventListener('click',()=>{
+    if(arrow_R){
+        trending.scrollLeft += 320
+    }else{
+        console.log("Hubo un error")
+    }
+})
+// Function para llamar a los otros oyentes
+function LlamarOyentes(){
+    let arrow_L = document.getElementById('Arrow_left_Movies');
+    let arrow_R = document.getElementById('Arrow_right_Movies');
+    let trending = document.getElementById('Trending');
+
+    arrow_R.addEventListener('click',()=>{
+        if(arrow_R){
             trending.scrollLeft += 320
         }else{
             console.log("Hubo un error")
         }
     })
+    arrow_L.addEventListener('click',()=>{
+        if(arrow_L){
+            trending.scrollLeft -= 320
+        }else{
+            console.log("Hubo un error")
+        }
+    })
+
+    let arrow_left = document.getElementById('Arrow_left');
+    let arrow_right = document.getElementById('Arrow_right');
+
+    arrow_left.addEventListener('click',()=>{
+        page--;
+        obtener_peliculas();
+    })
+    arrow_right.addEventListener('click',()=>{
+        page++;
+        obtener_peliculas();
+    })
+
 }
+
 // Funcion que obtuiene el tipo de clasificacion de la pelicula
 function ClasiMovie(Vote){
     if(Vote >= 8){
@@ -42,6 +107,7 @@ function ClasiMovie(Vote){
         return "R"
     }
 }
+
 //Llave de la api
 const key = 'a123512ad7d1eb8f1ff144501c87ec1a';
 // Solicitud a la api de las peliculas vas populares en estos momentos
@@ -79,7 +145,7 @@ const obtener_peliculas = async() =>{
             console.log(datos)
             const Populars = datos.results;
             let populares = '';
-            Populars.forEach(Popular=>{
+            movies_and_series= Populars.map(Popular=>{
                 populares += `<div class="Movie-recomend">
                     <img src="https://image.tmdb.org/t/p/w500/${Popular.backdrop_path}" alt="Logo">
                     <div>
@@ -89,6 +155,12 @@ const obtener_peliculas = async() =>{
                     </div>
                     <h4>${Popular.title || Popular.name}</h4>
                 </div>`;
+                return {name:Popular.name || Popular.title,
+                    release_date: Popular.release_date || Popular.first_air_date,
+                    poster:Popular.backdrop_path,
+                    categoria: Popular.media_type,
+                    tipo: ClasiMovie(Popular.vote_average)
+                }
             })
             document.getElementById('List--Movies').innerHTML = populares;
         }
@@ -96,7 +168,42 @@ const obtener_peliculas = async() =>{
         console.error(`Hubo un error ${e}`)
     }
 }
+// Funcion para buscar peliculas o series
+let buscador = '';
+const Search = document.getElementById('Search-Movie');
+Search.addEventListener('input',(e)=>{
+    const value = e.target.value
+    if(value == ''){
+        ActaulizarContent();
+        LlamarOyentes();
+        obtener_peliculas();
+        obtener_peliculas_populares();   
+    }else{
+        console.log(movies_and_series)
+        let buscador = '<h1>Found the results</h1>'
+        let encontroMovie = false;
+        document.getElementsByClassName('Trending')[0].innerHTML = '';
+        document.getElementsByClassName('Recomend')[0].innerHTML = '';
+        movies_and_series.forEach(movie =>{
+            const isVisible = movie.name.toLowerCase().includes(value.toLowerCase())
+            if(isVisible){
+                encontroMovie = true;
+                buscador += `<div class="Movies">
+                        <img src="https://image.tmdb.org/t/p/w500/${movie.poster}" alt="Logo">
+                        <div>
+                            <span id="Fecha">${movie.release_date}</span>
+                            <span id="Categoria">${movie.categoria}</span>
+                            <span id="Tipo">${movie.tipo}</span>
+                        </div>
+                        <h4>${movie.name}</h4>
+                    </div>
+                </div>`
+            }
+        })
+        document.getElementsByClassName('Trending')[0].innerHTML = buscador;
+    }
+    
+})
 obtener_peliculas_populares();
 obtener_peliculas();
-Arrow_left();
-Arrow_right();
+
