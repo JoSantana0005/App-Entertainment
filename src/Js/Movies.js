@@ -1,12 +1,13 @@
 let page = 1;
 const key = 'a123512ad7d1eb8f1ff144501c87ec1a';
+let Movies_List = document.getElementById('List--Movie');
 // Eventos para cambiar el cntenido de las peliculas
 function Arrow_left(){
     const arrow_L = document.getElementById('Arrow_left');
     arrow_L.addEventListener('click',()=>{
         if(arrow_L){
             page--;
-            //Funcion de la solictud de la api
+            Obtener_Movies();
         }else{
             console.log("Hubo un error")
         }
@@ -17,7 +18,7 @@ function Arrow_right(){
     arrow_R.addEventListener('click',()=>{
         if(arrow_R){
             page++;
-            //Funcion de la solicitud a la api
+            Obtener_Movies();
         }
     })
 }
@@ -34,7 +35,7 @@ function ClasiMovie(Vote){
 // solicitud a la api para obtener todas las peliculas
 const Obtener_Movies = async() =>{
     try{
-        const respuesta = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`)
+        const respuesta = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${key}&language=en-US&page=${page}}`)
         console.log(respuesta)
         if(respuesta.status == 200){
             const datos = await respuesta.json();
@@ -46,19 +47,22 @@ const Obtener_Movies = async() =>{
                         <img src="https://image.tmdb.org/t/p/w500/${Movie.backdrop_path}" alt="Logo">
                         <div>
                             <span id="Fecha-estreno">${Movie.release_date}</span>
-                            <span id="Categoria-pelicula">${Movie.media_type}</span>
+                            <span id="Categoria-pelicula">Movie</span>
                             <span id="tipo--pelicula">${ClasiMovie(Movie.vote_average)}</span>
                         </div>
                         <h4>${Movie.title}</h4>
                     </div>`
             });
-            if(document.getElementById('List--Movie')){
-                document.getElementById('List--Movie').innerHTML = List
+            if(Movies_List){
+                Movies_List.innerHTML = List
             }else{
-                
+                console.log("Hubo un error")
             }
         }
     }catch(e){
         console.error(`Hubo un error ${e}`)
     }
 }
+Obtener_Movies();
+Arrow_left();
+Arrow_right();
