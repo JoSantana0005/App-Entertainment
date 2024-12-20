@@ -238,7 +238,6 @@ main .Recomend .Recomend--movies .List--Movies .Movie-recomend div span{
 main .Recomend .Recomend--movies .List--Movies h4{
     font-size: 1.3em;
     color: var(--FontColor);
-    max-width: 150px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
