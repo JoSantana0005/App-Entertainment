@@ -155,7 +155,7 @@ Search.addEventListener('input',(e)=>{
         if(buscador != ''){
             document.getElementById('List--Movie').innerHTML = buscador;
         }else{
-            document.getElementById('List-Movie').innerHTML = '<p>No hay</p>';
+            document.getElementById('List--Movie').innerHTML = '<p>No hay</p>';
         }
     }
 })
