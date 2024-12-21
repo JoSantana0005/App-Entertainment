@@ -2,11 +2,14 @@ let page = 1;
 const arrow_left = document.getElementById('Arrow_left');
 const arrow_right = document.getElementById('Arrow_right');
 const trending = document.getElementById('Trending');
+const ContainerTrending = document.getElementsByClassName('Trending')[0];
+const ContainerRecommend = document.getElementsByClassName('Recomend')[0];
 let movies_and_series = [];
+let Title = document.getElementById('Title');
 // Evento para actaulizar el contenido
 function ActaulizarContent(){
-    document.getElementsByClassName('Trending')[0].innerHTML = `<article class="Title--section">
-                <h2>Trending</h2>
+    ContainerTrending.innerHTML = `<article class="Title--section">
+                <h2 id="Title">Trending</h2>
                 <div>
                     <svg id="Arrow_left_Movies" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                         <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
@@ -19,7 +22,7 @@ function ActaulizarContent(){
             <article class="Trending--movies" id="Trending">
                 <div class="List" id="List_Movie"></div>
             </article>`
-    document.getElementsByClassName('Recomend')[0].innerHTML = `<article class="Title--recomend">
+    ContainerRecommend.innerHTML = `<article class="Title--recomend">
                 <h2>Recommended of you</h2>
                 <div>
                     <svg id="Arrow_left" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -32,6 +35,24 @@ function ActaulizarContent(){
             </article>
             <article class="Recomend--movies" id="Recomend--movies">
                 <div class="List--Movies" id="List--Movies"></div>
+            </article>`
+    
+}
+// Function para obtener Founds the results
+function SearchTitle(){
+    ContainerTrending.innerHTML = `<article class="Title--section">
+                <h2 id="Title">${Title.innerText}</h2>
+                <div>
+                    <svg id="Arrow_left_Movies" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
+                    </svg>
+                    <svg id="Arrow_right_Movies" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                        <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/>
+                    </svg>
+                </div>
+            </article>
+            <article class="Trending--movies" id="Trending">
+                <div class="List" id="List_Movie"></div>
             </article>`
 }
 // Eventos para cambiar el contenido de la pagina
@@ -94,7 +115,6 @@ function LlamarOyentes(){
         page++;
         obtener_peliculas();
     })
-
 }
 
 // Funcion que obtuiene el tipo de clasificacion de la pelicula
@@ -169,25 +189,22 @@ const obtener_peliculas = async() =>{
     }
 }
 // Funcion para buscar peliculas o series
-let buscador = '';
 const Search = document.getElementById('Search-Movie');
 Search.addEventListener('input',(e)=>{
-    const value = e.target.value
+    const value = e.target.value.trim();
+    let buscador = ''; 
     if(value == ''){
         ActaulizarContent();
         LlamarOyentes();
         obtener_peliculas();
-        obtener_peliculas_populares();   
+        obtener_peliculas_populares();
     }else{
-        console.log(movies_and_series)
-        let buscador = '<h1>Found the results</h1>'
-        let encontroMovie = false;
-        document.getElementsByClassName('Trending')[0].innerHTML = '';
+        Title.innerText = 'Found the results';
+        SearchTitle();
         document.getElementsByClassName('Recomend')[0].innerHTML = '';
         movies_and_series.forEach(movie =>{
             const isVisible = movie.name.toLowerCase().includes(value.toLowerCase())
             if(isVisible){
-                encontroMovie = true;
                 buscador += `<div class="Movies">
                         <img src="https://image.tmdb.org/t/p/w500/${movie.poster}" alt="Logo">
                         <div>
@@ -200,7 +217,12 @@ Search.addEventListener('input',(e)=>{
                 </div>`
             }
         })
-        document.getElementsByClassName('Trending')[0].innerHTML = buscador;
+        if(buscador != ''){
+            document.getElementById('List_Movie').innerHTML = buscador;
+        }else{
+            document.getElementById('List_Movie').innerHTML = '<p>No hay</p>';
+        }
+        
     }
     
 })
