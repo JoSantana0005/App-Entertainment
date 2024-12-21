@@ -16,16 +16,51 @@ main{
     padding: 2px;
     color: var(--FontColor);
 }
-main section{
+main .Search{
+    height: 45px;
+    display: flex;
+    justify-content: left;
     width: 100%;
-    height: 100%;
+}
+main .Search article{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 15px;
+}
+main .Search article input{
+    padding: 7px 10px;
+    width: 50%;
+    background-color: var(--BorderColor);
+    color: var(--FontColor);
+    border: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    outline: none;
+    transition: .1s linear;
+}
+main .Search article input::placeholder{
+    color: var(--FontColor);
+}
+main .Search article input:focus{
+    background-color: #0b0608;
+}
+main .Search article input:hover{
+    background-color: #0b0608;
+}
+main .Movies{
+    width: 100%;
+    height: 540px;
     padding: 5px;
     display: flex;
     flex-flow: column wrap;
     justify-content: left;
     gap: 5px;
+    position: relative;
+    top: -10px;
 }
-main section .Title--section{
+main .Movies .Title--section{
     border-bottom: 1px solid var(--FontColor);
     width: 100%;
     padding: 2px;
@@ -33,7 +68,7 @@ main section .Title--section{
     justify-content: space-between;
     align-items: center;
 }
-main section .Title--section h1{
+main .Movies .Title--section h1{
     font-size: 1.9em;
     font-weight: 500;
     letter-spacing: 1px;
@@ -45,47 +80,48 @@ main section .Title--section div{
     justify-content: space-evenly;
     align-items: center;
 }
-main section .Title--section div svg{
+main .Movies .Title--section div svg{
     cursor: pointer;
     transition: .1s linear;
 }
-main section .Title--section div svg:hover{
+main .Movies .Title--section div svg:hover{
     padding: 2px;
     fill: var(--TertiaryColor);
 }
-main section .Movie{
+main .Movies .Movie{
     width: 100%;
-    height: 530px;
+    height: 480px;
     display: flex;
     flex-flow: column wrap;
     justify-content: left;
     overflow-y: auto;
     scroll-behavior: smooth;
 }
-main section .Movie::-webkit-scrollbar{
+main .Movies .Movie::-webkit-scrollbar{
     width: 7px;
     background-color: transparent;
 }
-main section .Movie::-webkit-scrollbar-thumb{
+main .Movies .Movie::-webkit-scrollbar-thumb{
     background-color: var(--FontColor);
 }
-main section .Movie .List--Movie{
+main .Movies .Movie .List--Movie{
     display: flex;
     flex-flow: row wrap;
     gap: 5px;
     justify-content: center;
     padding: 2px;
 }
-main section .Movie .List--Movie .Movie--List{
+main .Movies .Movie .List--Movie .Movie--List{
     width: 300px;
     height: 185px;
     padding: 2px;
+    margin-left: 15px;
     display: flex;
     flex-flow: column wrap;
     justify-content: left;
     gap: 2px;
 }
-main section .Movie .List--Movie .Movie--List img{
+main .Movies .Movie .List--Movie .Movie--List img{
     border: 2px solid var(--BorderColor);
     width: 100%;
     height: 120px;
@@ -93,11 +129,11 @@ main section .Movie .List--Movie .Movie--List img{
     cursor: pointer;
     transition: .1s linear;
 }
-main section .Movie .List--Movie .Movie--List img:hover{
+main .Movies .Movie .List--Movie .Movie--List img:hover{
     padding: 2px;
     border: 2px solid var(--HoverColor);
 }
-main section .Movie .List--Movie .Movie--List div{
+main .Movies .Movie .List--Movie .Movie--List div{
     width: 100%;
     border-bottom: 1px solid var(--BorderColor);
     border-radius: 10px;
@@ -105,13 +141,13 @@ main section .Movie .List--Movie .Movie--List div{
     justify-content: space-around;
     align-items: center;
 }
-main section .Movie .List--Movie .Movie--List div span{
+main .Movies .Movie .List--Movie .Movie--List div span{
     font-size: 0.9em;
     color: #ccc;
     letter-spacing: 1px;
     font-weight: 500;
 }
-main section .Movie .List--Movie .Movie--List h4{
+main .Movies .Movie .List--Movie .Movie--List h4{
     font-size: 1.5em;
     letter-spacing: 1px;
     font-weight: 500;

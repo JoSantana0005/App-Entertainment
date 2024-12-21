@@ -15,47 +15,83 @@ main{
     width: 100%;
     padding: 2px;
     display: flex;
+    flex-flow: column wrap;
     justify-content: left;
     color: var(--FontColor);
 }
-main section{
+main .Search{
+    height: 45px;
+    display: flex;
+    justify-content: left;
     width: 100%;
-    height: 100%;
+}
+main .Search article{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 15px;
+}
+main .Search article input{
+    padding: 7px 10px;
+    width: 50%;
+    background-color: var(--BorderColor);
+    color: var(--FontColor);
+    border: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    outline: none;
+    transition: .1s linear;
+}
+main .Search article input::placeholder{
+    color: var(--FontColor);
+}
+main .Search article input:focus{
+    background-color: #0b0608;
+}
+main .Search article input:hover{
+    background-color: #0b0608;
+}
+main .Series-section{
+    width: 100%;
+    border: 1px solid var(--FontColor);
+    height: 540px;
     padding: 3px;
     display: flex;
     flex-flow: column wrap;
     gap: 5px;
 }
-main section .Title--section{
+main .Series-section .Title--section{
     border-bottom: 1px solid var(--FontColor);
     display: flex;
+    width: 100%;
     justify-content: space-between;
     padding: 5px;
     align-items: center;
 }
-main section .Title--section h1{
+main .Series-section .Title--section h1{
     font-size: 1.8em;
     letter-spacing: 1px;
     font-weight: 500;
     padding-left: 10px;
 }
-main section .Title--section div{
+main .Series-section .Title--section div{
     width: 100px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
-main section .Title--section div svg{
+main .Series-section .Title--section div svg{
     cursor: pointer;
     transition: .1s linear;
 }
-main section .Title--section div svg:hover{
+main .Series-section .Title--section div svg:hover{
     padding: 2px;
     fill: var(--TertiaryColor);
 }
-main section .List--series{
+main .Series-section .List--series{
     width: 100%;
-    height: 530px;
+    height: 460px;
     padding: 3px;
     display: flex;
     flex-flow: column wrap;
@@ -63,21 +99,21 @@ main section .List--series{
     overflow-y: auto;
     scroll-behavior: smooth;
 }
-main section .List--series::-webkit-scrollbar{
+main .Series-section .List--series::-webkit-scrollbar{
     width: 8px;
     background-color: transparent;
 }
-main section .List--series::-webkit-scrollbar-thumb{
+main .Series-section .List--series::-webkit-scrollbar-thumb{
     background-color: var(--FontColor);
 }
-main section .List--series .Series{
+main .Series-section .List--series .Series{
     display: flex;
     flex-flow: row wrap;
-    gap: 3px;
+    gap: 5px;
     padding: 2px;
     justify-content: center;
 }
-main section .List--series .Series .Series--List{
+main .Series-section .List--series .Series .Series--List{
     width: 300px;
     height: 185px;
     margin-left: 15px;
@@ -86,7 +122,7 @@ main section .List--series .Series .Series--List{
     gap: 2px;
     justify-content: left;
 }
-main section .List--series .Series .Series--List img{
+main .Series-section .List--series .Series .Series--List img{
     border: 2px solid var(--BorderColor);
     width: 100%;
     height: 120px;
@@ -94,25 +130,25 @@ main section .List--series .Series .Series--List img{
     cursor: pointer;
     transition: .1s linear;
 }
-main section .List--series .Series .Series--List img:hover{
+main .Series-section .List--series .Series .Series--List img:hover{
     padding: 2px;
     border: 2px solid var(--HoverColor);
 }
-main section .List--series .Series .Series--List div{
-    border-bottom: 2px solid var(--FontColor);
+main .Series-section .List--series .Series .Series--List div{
+    border-bottom: 2px solid var(--BorderColor);
     width: 100%;
     border-radius: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-main section .List--series .Series .Series--List div span{
+main .Series-section .List--series .Series .Series--List div span{
     font-size: 0.9em;
     color: #ccc;
     font-weight: 500;
     letter-spacing: 1px;
 }
-main section .List--series .Series .Series--List h4{
+main .Series-section .List--series .Series .Series--List h4{
     font-size: 1.5em;
     letter-spacing: 1px;
     font-weight: 500;

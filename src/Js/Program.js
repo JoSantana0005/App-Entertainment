@@ -8,6 +8,7 @@ function Arrow_left(){
     arrow_L.addEventListener('click',()=>{
         if(arrow_L){
             page--;
+            obtener_Series();
         }else{
             console.log("Hubo un error")
         }
@@ -18,6 +19,7 @@ function Arrow_right(){
     arrow_R.addEventListener('click',()=>{
         if(arrow_R){
             page++;
+            obtener_Series();
         }else{
             console.log("Hubo un error")
         }
