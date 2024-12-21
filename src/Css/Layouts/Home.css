@@ -71,6 +71,7 @@ main .Trending .Title--section h2{
     letter-spacing: 1px;
     font-weight: 500;
     color: var(--FontColor);
+    
 
 }
 main .Trending .Title--section div{
@@ -146,6 +147,10 @@ main .Trending .Trending--movies .List .Movies h4{
     font-weight: 500;
     color: var(--FontColor);
     padding-left: 3px;
+    max-width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 main .Recomend{
     display: flex;
@@ -239,4 +244,123 @@ main .Recomend .Recomend--movies .List--Movies h4{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+/*Dialog*/
+dialog{
+    background: linear-gradient(to left, var(--PrimaryColor), var(--BorderColor));
+    width: 45%;
+    height: 350px;
+    padding: 4px;
+    margin: auto;
+    position: absolute;
+    top: 70px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    color: var(--FontColor);
+    border-radius: 10px;
+    border: 2px solid #000;
+    box-shadow: 0 0 15px var(--BorderColor);
+}
+dialog #Cerrar{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 25px;
+    cursor: pointer;
+    padding: 0 15px;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: .1s linear;
+    text-align: center;
+}
+dialog #Cerrar:hover{
+    padding: 2px;
+    background-color: var(--TertiaryColor);
+}
+dialog .Content--dialog{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+}
+dialog .Content--dialog .content--left{
+    width: 295px;
+    padding: 3px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    gap: 3px;
+}
+dialog .Content--dialog .content--left img{
+    border: 1px solid var(--HoverColor);
+    width: 100%;
+    height: 150px;
+    border-radius: 5px;
+}
+dialog .Content--dialog .content--left .Title{
+    width: 100%;
+    text-align: center;
+    height: 30px;
+}
+dialog .Content--dialog .content--left .Title h3{
+    font-size: 1.4em;
+    letter-spacing: 1px;
+    font-weight: 500;
+    max-width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+dialog .Content--dialog .content--left .Info{
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+}
+dialog .Content--dialog .content--left .Info div{
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    align-items: center;
+    border-top: 2px solid var(--FontColor);
+    border-radius: 5px;
+}
+dialog .Content--dialog .content--left button{
+    width: 85%;
+    margin-top: 3px;
+    padding: 4px 10px;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    font-weight: 500;
+    border: none;
+    background-color: var(--BorderColor);
+    color: var(--FontColor);
+    cursor: pointer;
+    border-radius: 10px;
+    transition: .1s linear;
+}
+dialog .Content--dialog .content--left button:hover{
+    background-color: var(--TertiaryColor);
+    padding: 5px 10px;
+}
+dialog .Content--dialog .content--right{
+    display: flex;
+    flex-flow: column wrap;
+    width: 290px;
+}
+dialog .Content--dialog .content--right h4{
+    font-size: 1.4em;
+    letter-spacing: 1px;
+    font-weight: 500;
+
+}
+dialog .Content--dialog .content--right .Overview{
+    text-align: justify;
+    font-size: 1em;
+    text-wrap: pretty;
+    border-top: 2px solid var(--FontColor);
+    font-weight: 500;
+    height: 92%;
+    
 }
