@@ -4,6 +4,8 @@ const arrow_right = document.getElementById('Arrow_right');
 const trending = document.getElementById('Trending');
 const ContainerTrending = document.getElementsByClassName('Trending')[0];
 const ContainerRecommend = document.getElementsByClassName('Recomend')[0];
+const Ventana_modal = document.getElementById('Ventana-Modal');
+const Cerrar_modal = document.getElementById('Cerrar');
 let movies_and_series = [];
 let Title = document.getElementById('Title');
 // Evento para actaulizar el contenido
@@ -127,7 +129,14 @@ function ClasiMovie(Vote){
         return "R"
     }
 }
-
+// Evento que cierra la ventana modal
+Cerrar_modal.addEventListener('click',()=>{
+    if(Cerrar_modal){
+        Ventana_modal.close();
+    }else{
+        console.log("No existen tal elemento");
+    }
+})
 //Llave de la api
 const key = 'a123512ad7d1eb8f1ff144501c87ec1a';
 // Solicitud a la api de las peliculas vas populares en estos momentos
@@ -183,6 +192,18 @@ const obtener_peliculas = async() =>{
                 }
             })
             document.getElementById('List--Movies').innerHTML = populares;
+            // Evento para abrir la ventana modal
+            const Modal_movies_popular = document.querySelectorAll('.Movie-recomend')
+            Modal_movies_popular.forEach((element,index) =>{
+                element.addEventListener('click',()=>{
+                    if(Ventana_modal){
+                        Ventana_modal.showModal();
+                        //Logica para colocar todos los datos;
+                    }else{
+                        console.log("No existen la ventana");
+                    }
+                })
+            })
         }
     }catch(e){
         console.error(`Hubo un error ${e}`)
@@ -226,6 +247,7 @@ Search.addEventListener('input',(e)=>{
     }
     
 })
+
 obtener_peliculas_populares();
 obtener_peliculas();
 
