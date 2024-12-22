@@ -213,7 +213,9 @@ const obtener_peliculas = async() =>{
                     release_date: Popular.release_date || Popular.first_air_date,
                     poster:Popular.backdrop_path,
                     categoria: Popular.media_type,
-                    tipo: ClasiMovie(Popular.vote_average)
+                    tipo: ClasiMovie(Popular.vote_average),
+                    popularidad: Popular.popularity,
+                    overview: Popular.overview
                 }
             })
             document.getElementById('List--Movies').innerHTML = populares;
@@ -262,10 +264,10 @@ Search.addEventListener('input',(e)=>{
         Title.innerText = 'Found the results';
         SearchTitle();
         document.getElementsByClassName('Recomend')[0].innerHTML = '';
-        movies_and_series.forEach(movie =>{
+        movies_and_series.forEach((movie,originalIndex) =>{
             const isVisible = movie.name.toLowerCase().includes(value.toLowerCase())
             if(isVisible){
-                buscador += `<div class="Movies">
+                buscador += `<div class="Movies" data-index=${originalIndex}>
                         <img src="https://image.tmdb.org/t/p/w500/${movie.poster}" alt="Logo">
                         <div>
                             <span id="Fecha">${movie.release_date}</span>
@@ -279,6 +281,31 @@ Search.addEventListener('input',(e)=>{
         })
         if(buscador != ''){
             document.getElementById('List_Movie').innerHTML = buscador;
+            // Evento para abrir la ventana modal en la busqueda de la pelicula 
+            const Search_movies = document.querySelectorAll('.Movies');
+            Search_movies.forEach((element) =>{
+                element.addEventListener('click',()=>{
+                    const index = element.getAttribute('data-index');
+                    if(Ventana_modal){
+                        Ventana_modal.showModal();
+                        const Imagen = document.getElementById('Imagen');
+                        const Title = document.getElementById('Title-dialog');
+                        const Fecha_dialog = document.getElementById('Fecha--dialog');
+                        const catalogo = document.getElementById('Catalogo--dialog');
+                        const Tipo_movie = document.getElementById('Tipo--movie');
+                        const Popularity = document.getElementById('Popularity');
+                        const Overview = document.getElementById('Overview');
+                        // Agregamos la informacion a la ventana modal
+                        Imagen.src = `https://image.tmdb.org/t/p/w500/${movies_and_series[index].poster}`;
+                        Title.textContent = `${movies_and_series[index].name}`;
+                        Fecha_dialog.textContent = `${movies_and_series[index].release_date}`;
+                        catalogo.textContent = `${movies_and_series[index].categoria}`;
+                        Tipo_movie.textContent = `${movies_and_series[index].tipo}`
+                        Popularity.textContent = `${movies_and_series[index].popularidad}`;
+                        Overview.textContent = `${movies_and_series[index].overview}`;
+                    }
+                })
+            })
         }else{
             document.getElementById('List_Movie').innerHTML = '<p>No hay</p>';
         }
