@@ -3,6 +3,7 @@ const key = 'a123512ad7d1eb8f1ff144501c87ec1a';
 let List_movies = [];
 let Title = document.getElementById('Title');
 const ContainerMovies = document.getElementsByClassName('Movies')[0];
+const Ventana_modal = document.getElementById('Ventana-Modal');
 // Funcion para actualizar el contenido de la section
 function ActualizarContent(){
     ContainerMovies.innerHTML = `<article class="Title--section">
@@ -91,6 +92,11 @@ function ClasiMovie(Vote){
         return "R"
     }
 }
+// Evento para cerrar la ventana modal
+const Cerrar_modal = document.getElementById('Cerrar');
+Cerrar_modal.addEventListener('click',()=>{
+    Ventana_modal.close();
+})
 // solicitud a la api para obtener todas las peliculas
 const Obtener_Movies = async() =>{
     try{
@@ -115,10 +121,37 @@ const Obtener_Movies = async() =>{
                     poster: Movie.backdrop_path, 
                     categoria: Movie.media_type, 
                     Tipo: ClasiMovie(Movie.vote_average) ,
-                    fecha: Movie.release_date
+                    fecha: Movie.release_date,
+                    popularidad: Movie.popularity,
+                    Overview: Movie.overview
                 }
             });
             document.getElementById('List--Movie').innerHTML = List
+            const Movie_list = document.querySelectorAll('.Movie--List');
+            Movie_list.forEach((element,index) =>{
+                element.addEventListener('click',()=>{
+                    if(Ventana_modal){
+                        Ventana_modal.showModal();
+                        const Imagen = document.getElementById('Imagen');
+                        const Title = document.getElementById('Title-dialog');
+                        const Fecha_dialog = document.getElementById('Fecha--dialog');
+                        const catalogo = document.getElementById('Catalogo--dialog');
+                        const Tipo_movie = document.getElementById('Tipo--movie');
+                        const Popularity = document.getElementById('Popularity');
+                        const Overview = document.getElementById('Overview');
+                        // Ponemos los datos en el dialog
+                        Imagen.src = `https://image.tmdb.org/t/p/w500/${Movies[index].backdrop_path}`;
+                        Title.textContent = `${Movies[index].title || Movies[index].name}`;
+                        Fecha_dialog.textContent = `${Movies[index].release_date || Movies[index].first_air_date}`;
+                        catalogo.textContent = `${Movies[index].media_type}`;
+                        Tipo_movie.textContent = `${ClasiMovie(Movies[index].vote_average)}`
+                        Popularity.textContent = `${Movies[index].popularity}`;
+                        Overview.textContent = `${Movies[index].overview}`;
+                    }else{
+                        console.log('No existen tal contenedor');
+                    }
+                })
+            })
         }
     }catch(e){
         console.error(`Hubo un error ${e}`)
@@ -138,10 +171,10 @@ Search.addEventListener('input',(e)=>{
         Title.innerText = 'Founds the results'
         MostrarSearch();
         console.log(List_movies)
-        List_movies.forEach(Movie =>{
+        List_movies.forEach((Movie,originalIndex) =>{
             const isVisible = Movie.name.toLowerCase().includes(value_input.toLowerCase())
             if(isVisible){
-                buscador += `<div class="Movie--List">
+                buscador += `<div class="Movie--List" data--index=${originalIndex}>
                         <img src="https://image.tmdb.org/t/p/w500/${Movie.poster}" alt="Logo">
                         <div>
                             <span id="Fecha-estreno">${Movie.fecha}</span>
@@ -154,6 +187,33 @@ Search.addEventListener('input',(e)=>{
         })
         if(buscador != ''){
             document.getElementById('List--Movie').innerHTML = buscador;
+            const Movie_list = document.querySelectorAll('.Movie--List');
+            Movie_list.forEach(element =>{
+                element.addEventListener('click',()=>{
+                    const index = element.getAttribute('data--index');
+                    if(Ventana_modal){
+                        Ventana_modal.showModal();
+                        const Imagen = document.getElementById('Imagen');
+                        const Title = document.getElementById('Title-dialog');
+                        const Fecha_dialog = document.getElementById('Fecha--dialog');
+                        const catalogo = document.getElementById('Catalogo--dialog');
+                        const Tipo_movie = document.getElementById('Tipo--movie');
+                        const Popularity = document.getElementById('Popularity');
+                        const Overview = document.getElementById('Overview');
+                        
+                        // Colocamos la informacion de la pelicula que fue buscada en la ventana modal
+                        Imagen.src = `https://image.tmdb.org/t/p/w500/${List_movies[index].poster}`;
+                        Title.textContent = `${List_movies[index].name}`;
+                        Fecha_dialog.textContent = `${List_movies[index].fecha}`;
+                        catalogo.textContent = `${List_movies[index].categoria}`;
+                        Tipo_movie.textContent = `${List_movies[index].tipo}`
+                        Popularity.textContent = `${List_movies[index].popularidad}`;
+                        Overview.textContent = `${List_movies[index].Overview}`
+                    }else{
+                        console.log("No existen tal contenedor")
+                    }
+                })
+            })
         }else{
             document.getElementById('List--Movie').innerHTML = '<p>No hay</p>';
         }
