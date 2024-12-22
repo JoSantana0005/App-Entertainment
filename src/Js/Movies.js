@@ -4,6 +4,13 @@ let List_movies = [];
 let Title = document.getElementById('Title');
 const ContainerMovies = document.getElementsByClassName('Movies')[0];
 const Ventana_modal = document.getElementById('Ventana-Modal');
+const Imagen = document.getElementById('Imagen');
+const Title_dialog = document.getElementById('Title-dialog');
+const Fecha_dialog = document.getElementById('Fecha--dialog');
+const catalogo = document.getElementById('Catalogo--dialog');
+const Tipo_movie = document.getElementById('Tipo--movie');
+const Popularity = document.getElementById('Popularity');
+const Overview = document.getElementById('Overview');
 // Funcion para actualizar el contenido de la section
 function ActualizarContent(){
     ContainerMovies.innerHTML = `<article class="Title--section">
@@ -132,16 +139,9 @@ const Obtener_Movies = async() =>{
                 element.addEventListener('click',()=>{
                     if(Ventana_modal){
                         Ventana_modal.showModal();
-                        const Imagen = document.getElementById('Imagen');
-                        const Title = document.getElementById('Title-dialog');
-                        const Fecha_dialog = document.getElementById('Fecha--dialog');
-                        const catalogo = document.getElementById('Catalogo--dialog');
-                        const Tipo_movie = document.getElementById('Tipo--movie');
-                        const Popularity = document.getElementById('Popularity');
-                        const Overview = document.getElementById('Overview');
                         // Ponemos los datos en el dialog
                         Imagen.src = `https://image.tmdb.org/t/p/w500/${Movies[index].backdrop_path}`;
-                        Title.textContent = `${Movies[index].title || Movies[index].name}`;
+                        Title_dialog.textContent = `${Movies[index].title || Movies[index].name}`;
                         Fecha_dialog.textContent = `${Movies[index].release_date || Movies[index].first_air_date}`;
                         catalogo.textContent = `${Movies[index].media_type}`;
                         Tipo_movie.textContent = `${ClasiMovie(Movies[index].vote_average)}`
@@ -193,17 +193,10 @@ Search.addEventListener('input',(e)=>{
                     const index = element.getAttribute('data--index');
                     if(Ventana_modal){
                         Ventana_modal.showModal();
-                        const Imagen = document.getElementById('Imagen');
-                        const Title = document.getElementById('Title-dialog');
-                        const Fecha_dialog = document.getElementById('Fecha--dialog');
-                        const catalogo = document.getElementById('Catalogo--dialog');
-                        const Tipo_movie = document.getElementById('Tipo--movie');
-                        const Popularity = document.getElementById('Popularity');
-                        const Overview = document.getElementById('Overview');
                         
                         // Colocamos la informacion de la pelicula que fue buscada en la ventana modal
                         Imagen.src = `https://image.tmdb.org/t/p/w500/${List_movies[index].poster}`;
-                        Title.textContent = `${List_movies[index].name}`;
+                        Title_dialog.textContent = `${List_movies[index].name}`;
                         Fecha_dialog.textContent = `${List_movies[index].fecha}`;
                         catalogo.textContent = `${List_movies[index].categoria}`;
                         Tipo_movie.textContent = `${List_movies[index].tipo}`
