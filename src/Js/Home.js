@@ -6,6 +6,7 @@ const ContainerTrending = document.getElementsByClassName('Trending')[0];
 const ContainerRecommend = document.getElementsByClassName('Recomend')[0];
 const Ventana_modal = document.getElementById('Ventana-Modal');
 const Cerrar_modal = document.getElementById('Cerrar');
+
 let movies_and_series = [];
 let Title = document.getElementById('Title');
 // Evento para actaulizar el contenido
@@ -158,7 +159,31 @@ const obtener_peliculas_populares = async() =>{
                         <h4>${pelicula.title || pelicula.name}</h4>
                     </div>`
             });
-            document.getElementById('List_Movie').innerHTML = movie
+            document.getElementById('List_Movie').innerHTML = movie;
+            const Movies_trending = document.querySelectorAll('.Movies');
+            Movies_trending.forEach((element,index) =>{
+                element.addEventListener('click',()=>{
+                    if(Ventana_modal){
+                        Ventana_modal.showModal();
+                        const Imagen = document.getElementById('Imagen');
+                        const Title = document.getElementById('Title-dialog');
+                        const Fecha_dialog = document.getElementById('Fecha--dialog');
+                        const catalogo = document.getElementById('Catalogo--dialog');
+                        const Tipo_movie = document.getElementById('Tipo--movie');
+                        const Popularity = document.getElementById('Popularity');
+                        const Overview = document.getElementById('Overview');
+                        // Ponemos los datos en el dialog
+                        Imagen.src = `https://image.tmdb.org/t/p/w500/${peliculas[index].backdrop_path}`;
+                        Title.textContent = `${peliculas[index].title || peliculas[index].name}`;
+                        Fecha_dialog.textContent = `${peliculas[index].release_date || peliculas[index].first_air_date}`;
+                        catalogo.textContent = `${peliculas[index].media_type}`;
+                        Tipo_movie.textContent = `${ClasiMovie(peliculas[index].vote_average)}`
+                        Popularity.textContent = `${peliculas[index].popularity}`;
+                        Overview.textContent = `${peliculas[index].overview}`; 
+                    }
+
+                })
+            })
         }
     }catch(e){
         console.error(`Hubo un error ${e}`)
@@ -198,7 +223,21 @@ const obtener_peliculas = async() =>{
                 element.addEventListener('click',()=>{
                     if(Ventana_modal){
                         Ventana_modal.showModal();
-                        //Logica para colocar todos los datos;
+                        const Imagen = document.getElementById('Imagen');
+                        const Title = document.getElementById('Title-dialog');
+                        const Fecha_dialog = document.getElementById('Fecha--dialog');
+                        const catalogo = document.getElementById('Catalogo--dialog');
+                        const Tipo_movie = document.getElementById('Tipo--movie');
+                        const Popularity = document.getElementById('Popularity');
+                        const Overview = document.getElementById('Overview'); 
+                        // Colocamos la informacion de las peliculas en dialog
+                        Imagen.src = `https://image.tmdb.org/t/p/w500/${Populars[index].backdrop_path}`;
+                        Title.textContent = `${Populars[index].title || Populars[index].name}`;
+                        Fecha_dialog.textContent = `${Populars[index].release_date || Populars[index].first_air_date}`;
+                        catalogo.textContent = `${Populars[index].media_type}`;
+                        Tipo_movie.textContent = `${ClasiMovie(Populars[index].vote_average)}`
+                        Popularity.textContent = `${Populars[index].popularity}`;
+                        Overview.textContent = `${Populars[index].overview}`;
                     }else{
                         console.log("No existen la ventana");
                     }
