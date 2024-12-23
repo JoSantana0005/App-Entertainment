@@ -248,11 +248,11 @@ main .Recomend .Recomend--movies .List--Movies h4{
 /*Dialog*/
 dialog{
     background: linear-gradient(to left, var(--PrimaryColor), var(--BorderColor));
-    width: 45%;
+    width: 50%;
     height: 370px;
     padding: 5px;
     position: absolute;
-    left: 400px;
+    left: 365px;
     top: 100px;
     color: var(--FontColor);
     border-radius: 10px;
@@ -360,7 +360,7 @@ dialog .Content--dialog .content--right{
     display: flex;
     flex-flow: column wrap;
 
-    width: 290px;
+    width: 350px;
 }
 dialog .Content--dialog .content--right h4{
     font-size: 1.4em;

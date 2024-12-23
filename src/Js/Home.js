@@ -14,6 +14,7 @@ const Tipo_movie = document.getElementById('Tipo--movie');
 const Popularity = document.getElementById('Popularity');
 const Overview = document.getElementById('Overview');
 let movies_and_series = [];
+let Favorites = [];
 let Title = document.getElementById('Title');
 // Evento para actaulizar el contenido
 function ActaulizarContent(){
@@ -136,6 +137,24 @@ function ClasiMovie(Vote){
         return "R"
     }
 }
+// Function para agregar una pelicula o serie a una lista de favoritos
+function FavoritesMovies_series(){
+    //evento para agregar una pelicula a favoritos
+    const Favorites_button = document.getElementById('Favorite--bookmarked');
+    Favorites_button.addEventListener('click',()=>{
+        const Info = {
+            Name: Title_dialog.textContent,
+            Poster: Imagen.src,
+            Fecha: Fecha_dialog.textContent,
+            catalog: catalogo.textContent,
+            tipo: Tipo_movie.textContent
+        }
+        Favorites.push(Info);
+        console.log(Favorites)
+        localStorage.setItem('Favorites',JSON.stringify(Favorites));
+        console.log(localStorage.getItem('Favorites'));
+    })
+}
 // Evento que cierra la ventana modal
 Cerrar_modal.addEventListener('click',()=>{
     if(Cerrar_modal){
@@ -154,8 +173,8 @@ const obtener_peliculas_populares = async() =>{
             const datos = await respuesta.json();
             const peliculas = datos.results
             let movie = '';
-            peliculas.forEach(pelicula => {
-                movie += `<div class="Movies">
+            peliculas.forEach((pelicula,index) => {
+                movie += `<div class="Movies" data-index=${index}>
                         <img src="https://image.tmdb.org/t/p/w500/${pelicula.backdrop_path}" alt="Logo">
                         <div>
                             <span id="Fecha">${pelicula.release_date || pelicula.first_air_date}</span>
@@ -236,7 +255,7 @@ const obtener_peliculas = async() =>{
                         console.log("No existen la ventana");
                     }
                 })
-            })
+            }) 
         }
     }catch(e){
         console.error(`Hubo un error ${e}`)
@@ -282,7 +301,7 @@ Search.addEventListener('input',(e)=>{
                         Ventana_modal.showModal();
                         // Agregamos la informacion a la ventana modal
                         Imagen.src = `https://image.tmdb.org/t/p/w500/${movies_and_series[index].poster}`;
-                        Title.textContent = `${movies_and_series[index].name}`;
+                        Title_dialog.textContent = `${movies_and_series[index].name}`;
                         Fecha_dialog.textContent = `${movies_and_series[index].release_date}`;
                         catalogo.textContent = `${movies_and_series[index].categoria}`;
                         Tipo_movie.textContent = `${movies_and_series[index].tipo}`
@@ -298,7 +317,26 @@ Search.addEventListener('input',(e)=>{
     }
     
 })
-
+//evento para agregar una pelicula a favoritos
+const Favorites_button = document.getElementById('Favorite--bookmarked');
+Favorites_button.addEventListener('click',()=>{
+    const Info = {
+        Name: Title_dialog.textContent,
+        Poster: Imagen.src,
+        Fecha: Fecha_dialog.textContent,
+        catalog: catalogo.textContent,
+        tipo: Tipo_movie.textContent
+    }
+    if(Favorites_button){
+        Favorites.push(Info)
+        localStorage.setItem('Favorites',JSON.stringify(Favorites));
+        console.log(localStorage.getItem('Favorites'));
+        alert(`This ${catalogo.textContent} was added to favorites`);
+        Ventana_modal.close();
+    }else{
+        console.log('No existen tal boton');
+    }
+})
 obtener_peliculas_populares();
 obtener_peliculas();
 

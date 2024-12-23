@@ -212,6 +212,8 @@ Search.addEventListener('input',(e)=>{
         }
     }
 })
+const favoritos = localStorage.getItem('Favorites');
+console.log(favoritos)
 Obtener_Movies();
 Arrow_left();
 Arrow_right();
