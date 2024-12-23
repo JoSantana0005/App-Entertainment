@@ -137,24 +137,6 @@ function ClasiMovie(Vote){
         return "R"
     }
 }
-// Function para agregar una pelicula o serie a una lista de favoritos
-function FavoritesMovies_series(){
-    //evento para agregar una pelicula a favoritos
-    const Favorites_button = document.getElementById('Favorite--bookmarked');
-    Favorites_button.addEventListener('click',()=>{
-        const Info = {
-            Name: Title_dialog.textContent,
-            Poster: Imagen.src,
-            Fecha: Fecha_dialog.textContent,
-            catalog: catalogo.textContent,
-            tipo: Tipo_movie.textContent
-        }
-        Favorites.push(Info);
-        console.log(Favorites)
-        localStorage.setItem('Favorites',JSON.stringify(Favorites));
-        console.log(localStorage.getItem('Favorites'));
-    })
-}
 // Evento que cierra la ventana modal
 Cerrar_modal.addEventListener('click',()=>{
     if(Cerrar_modal){

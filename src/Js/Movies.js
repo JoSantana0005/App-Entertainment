@@ -178,7 +178,7 @@ Search.addEventListener('input',(e)=>{
                         <img src="https://image.tmdb.org/t/p/w500/${Movie.poster}" alt="Logo">
                         <div>
                             <span id="Fecha-estreno">${Movie.fecha}</span>
-                            <span id="Categoria-pelicula">${Movie.categoria}</span>
+                            <span id="Categoria-pelicula">${Movie.categoria} Series</span>
                             <span id="tipo--pelicula">${Movie.Tipo}</span>
                         </div>
                         <h4>${Movie.name}</h4>
@@ -212,8 +212,26 @@ Search.addEventListener('input',(e)=>{
         }
     }
 })
-const favoritos = localStorage.getItem('Favorites');
-console.log(favoritos)
+const Local = localStorage.getItem('Favorites');
+const Favorites = JSON.parse(Local);
+// Evento para agregar una pelicula a favoritos
+const Favorites_button = document.getElementById('Favorite--bookmarked');
+Favorites_button.addEventListener('click',()=>{
+    const info = {
+        Name: Title_dialog.textContent,
+        Poster: Imagen.src,
+        fecha: Fecha_dialog,
+        catalog: catalogo.textContent,
+        tipo: Tipo_movie.textContent
+    }
+    if(Favorites_button){
+        Favorites.push(info)
+        localStorage.setItem('Favorites',JSON.stringify(Favorites))
+        console.log(localStorage.getItem('Favorites'));
+        alert('This movie was added to favorites');
+        Ventana_modal.close();
+    }
+})
 Obtener_Movies();
 Arrow_left();
 Arrow_right();

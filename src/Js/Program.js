@@ -212,7 +212,26 @@ Search.addEventListener('input',(e)=>{
         }
     }
 })
-
+// Evento para agregar una serie a favoritos
+const Local = localStorage.getItem('Favorites');
+const Favorites = JSON.parse(Local);
+const Favorites_button = document.getElementById('Favorite--bookmarked');
+Favorites_button.addEventListener('click',()=>{
+    const Info = {
+        Name: Title_dialog.textContent,
+        Poster: Imagen.src,
+        fecha: Fecha_dialog.textContent,
+        catalog: catalogo.textContent,
+        tipo: Tipo_movie.textContent
+    }
+    if(Favorites_button){
+        Favorites.push(Info);
+        localStorage.setItem('Favorites',JSON.stringify(Favorites))
+        console.log(localStorage.getItem('Favorites'));
+        alert('This Tv was added to favorites');
+        Ventana_modal.close();
+    }
+})
 obtener_Series();
 Arrow_left();
 Arrow_right();
