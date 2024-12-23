@@ -222,7 +222,9 @@ Favorites_button.addEventListener('click',()=>{
         Poster: Imagen.src,
         Fecha: Fecha_dialog.textContent,
         catalog: catalogo.textContent,
-        tipo: Tipo_movie.textContent
+        tipo: Tipo_movie.textContent,
+        popularidad: Popularity.textContent,
+        descripcion: Overview.textContent,
     }
     if(Favorites_button){
         Favorites.push(Info);

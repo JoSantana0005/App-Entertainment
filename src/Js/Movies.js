@@ -220,9 +220,11 @@ Favorites_button.addEventListener('click',()=>{
     const info = {
         Name: Title_dialog.textContent,
         Poster: Imagen.src,
-        Fecha: Fecha_dialog,
+        Fecha: Fecha_dialog.textContent,
         catalog: catalogo.textContent,
-        tipo: Tipo_movie.textContent
+        tipo: Tipo_movie.textContent,
+        popularidad: Popularity.textContent,
+        descripcion: Overview.textContent,
     }
     if(Favorites_button){
         Favorites.push(info)
