@@ -13,7 +13,7 @@ const cerrar_modal = document.getElementById('Cerrar');
 console.log(Favorites);
 // Evento para cerrar la ventana modal
 cerrar_modal.addEventListener('click',()=>{
-    cerrar_modal.close();
+    Ventana_modal.close();
 })
 // Function para agregar las series a favoritos
 function FavoriteSerie(){
@@ -40,12 +40,14 @@ function FavoriteSerie(){
             if(Ventana_modal){
                 Ventana_modal.showModal();
                 Imagen.src = Favorites[index].Poster;
-                Title_dialog.textContent = `${Movies[index].title || Movies[index].name}`;
-                Fecha_dialog.textContent = `${Movies[index].release_date || Movies[index].first_air_date}`;
-                catalogo.textContent = `${Movies[index].media_type}`;
-                Tipo_movie.textContent = `${ClasiMovie(Movies[index].vote_average)}`
-                Popularity.textContent = `${Movies[index].popularity}`;
-                Overview.textContent = `${Movies[index].overview}`;
+                Title_dialog.textContent = Favorites[index].Name;
+                Fecha_dialog.textContent = Favorites[index].Fecha;
+                catalogo.textContent = Favorites[index].catalog;
+                Tipo_movie.textContent = Favorites[index].tipo
+                Popularity.textContent = Favorites[index].popularidad;
+                Overview.textContent = Favorites[index].descripcion;
+            }else{
+                console.log("No existen la ventana modal");
             }
         })
     })
@@ -56,7 +58,7 @@ function FavoriteMovie(){
     let Movie = '';
     Favorites.forEach((favorite,index) => {
         if(favorite.catalog == 'movie'){
-            Movie += `<div class="Movies--List">
+            Movie += `<div class="Movies--List" data-index=${index}>
                         <img src="${favorite.Poster}" alt="Logo">
                         <div>
                             <span id="Fecha--Movie">${favorite.Fecha}</span>
@@ -68,6 +70,27 @@ function FavoriteMovie(){
         }
     });
     document.getElementById('List--Movies').innerHTML = Movie;
+    // Evento para la ventana modal
+    const List_Movies = document.querySelectorAll('.Movies--List');
+    List_Movies.forEach(element =>{
+        element.addEventListener('click',()=>{
+            const index = element.getAttribute('data-index');
+            if(Ventana_modal){
+                Ventana_modal.showModal();
+                Imagen.src = Favorites[index].Poster;
+                Title_dialog.textContent = Favorites[index].Name;
+                Fecha_dialog.textContent = Favorites[index].Fecha;
+                catalogo.textContent = Favorites[index].catalog;
+                Tipo_movie.textContent = Favorites[index].tipo
+                Popularity.textContent = Favorites[index].popularidad;
+                Overview.textContent = Favorites[index].descripcion;
+            
+            }else{
+                console.log("No existen la ventana modal");
+            }
+        })
+    })
+
 }
 FavoriteMovie();
 FavoriteSerie();
