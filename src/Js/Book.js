@@ -1,6 +1,7 @@
 // Agregamos las peliculas a la pagina
 const Local = localStorage.getItem('Favorites');
 const Favorites = JSON.parse(Local);
+console.log(Favorites)
 const Imagen = document.getElementById('Imagen');
 const Title_dialog = document.getElementById('Title-dialog');
 const Fecha_dialog = document.getElementById('Fecha--dialog');
@@ -13,6 +14,7 @@ const cerrar_modal = document.getElementById('Cerrar');
 const ContainerMovie = document.getElementsByClassName('Movies')[0];
 const ContainerSerie = document.getElementsByClassName('Series')[0];
 const Title = document.getElementById('Title');
+const Remove = document.getElementById('Favorite--bookmarked');
 console.log(Favorites);
 // Evento para cerrar la ventana modal
 cerrar_modal.addEventListener('click',()=>{
@@ -35,6 +37,35 @@ function SearchResults(){
             <article class="List--Favorites--Movies" id="List--Favorites--Movies">
                 <div class="List--Movies" id="List--Movies"></div>
             </article>`
+}
+// Function para borrar una pelicula 
+function Delete(){
+    Remove.addEventListener('click',()=>{
+        Favorites.forEach((index)=>{
+            if(catalogo.textContent == 'movie'){
+                Favorites.splice(index,1);
+                UpdateMovie();
+            }else{
+                Favorites.splice(index,1);
+                UpdateSerie();
+            }
+        })
+        localStorage.setItem('Favorites',JSON.stringify(Favorites));
+        alert(`se ha borrado este ${Title_dialog.textContent} de favoritos`)
+        Ventana_modal.close();
+        console.log(localStorage.getItem('Favorites'));
+    })
+}
+// Function actualizar la lista de peliculas
+function UpdateMovie(){
+    document.getElementById('List--Movies').innerHTML = '';
+    FavoriteMovie();
+}
+
+// Function actualizar la lista de series
+function UpdateSerie(){
+    document.getElementById('List--Series').innerHTML = '';
+    FavoriteSerie();
 }
 // Function para agregar las series a favoritos
 function FavoriteSerie(){
@@ -72,7 +103,7 @@ function FavoriteSerie(){
             }
         })
     })
-
+    Delete();
 }
 // Function para agregar las peliculas favoritas
 function FavoriteMovie(){
@@ -111,6 +142,7 @@ function FavoriteMovie(){
             }
         })
     })
+    Delete();
 
 }
 // Function para la busqueda de la pelicula o series
@@ -166,6 +198,9 @@ Search.addEventListener('input',(e)=>{
         }
     }
 })
+
 FavoriteMovie();
 FavoriteSerie();
+
+
 

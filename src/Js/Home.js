@@ -15,6 +15,8 @@ const Popularity = document.getElementById('Popularity');
 const Overview = document.getElementById('Overview');
 let movies_and_series = [];
 let Favorites = [];
+const Movies = [];
+const Series = [];
 let Title = document.getElementById('Title');
 // Evento para actaulizar el contenido
 function ActaulizarContent(){
@@ -156,6 +158,26 @@ const obtener_peliculas_populares = async() =>{
             const peliculas = datos.results
             let movie = '';
             peliculas.forEach((pelicula,index) => {
+                if(pelicula.media_type == 'movie'){
+                    const info = {
+                        Name: `${pelicula.title}`,
+                        Poster: `${pelicula.backdrop_path}`,
+                        Fecha: `${pelicula.release_date}`,
+                        catalog: `${pelicula.media_type}`,
+                        tipo: `${ClasiMovie(pelicula.vote_average)}`
+                    }
+                    localStorage.setItem
+                    Movies.push(info);
+                }else if(pelicula.media_type == 'tv'){
+                    const info = {
+                        Name: `${pelicula.name}`,
+                        Poster: `${pelicula.backdrop_path}`,
+                        Fecha: `${pelicula.first_air_date}`,
+                        catalog: `${pelicula.media_type}`,
+                        tipo: `${ClasiMovie(pelicula.vote_average)}`
+                    }
+                    Series.push(info);
+                }
                 movie += `<div class="Movies" data-index=${index}>
                         <img src="https://image.tmdb.org/t/p/w500/${pelicula.backdrop_path}" alt="Logo">
                         <div>
@@ -184,6 +206,8 @@ const obtener_peliculas_populares = async() =>{
 
                 })
             })
+            localStorage.setItem('Movies',JSON.stringify(Movies));
+            localStorage.setItem('Series',JSON.stringify(Series));
         }
     }catch(e){
         console.error(`Hubo un error ${e}`)
