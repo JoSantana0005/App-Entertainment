@@ -1,6 +1,6 @@
 // Agregamos las peliculas a la pagina
 const Local = localStorage.getItem('Favorites');
-const Favorites = JSON.parse(Local);
+let Favorites = JSON.parse(Local);
 console.log(Favorites)
 const Imagen = document.getElementById('Imagen');
 const Title_dialog = document.getElementById('Title-dialog');
@@ -15,11 +15,23 @@ const ContainerMovie = document.getElementsByClassName('Movies')[0];
 const ContainerSerie = document.getElementsByClassName('Series')[0];
 const Title = document.getElementById('Title');
 const Remove = document.getElementById('Favorite--bookmarked');
-console.log(Favorites);
+console.log(Favorites.length);
 // Evento para cerrar la ventana modal
 cerrar_modal.addEventListener('click',()=>{
     Ventana_modal.close();
 })
+// Function para colocar la informacion de la ventana modal
+function UpdateModal(index){
+    if(Favorites[index]){
+        Imagen.src = Favorites[index].Poster;
+        Title_dialog.textContent = Favorites[index].Name;
+        Fecha_dialog.textContent = Favorites[index].Fecha;
+        catalogo.textContent = Favorites[index].catalog;
+        Tipo_movie.textContent = Favorites[index].tipo
+        Popularity.textContent = Favorites[index].popularidad;
+        Overview.textContent = Favorites[index].descripcion;
+    }
+}
 // Funcion para restablecer el contenido de las sections
 function actualizarSection(){
     ContainerMovie.innerHTML = `<h2 id="Title">Bookmarked Movies</h2>
@@ -39,22 +51,27 @@ function SearchResults(){
             </article>`
 }
 // Function para borrar una pelicula 
-function Delete(){
-    Remove.addEventListener('click',()=>{
-        Favorites.forEach((index)=>{
-            if(catalogo.textContent == 'movie'){
-                Favorites.splice(index,1);
-                UpdateMovie();
-            }else{
-                Favorites.splice(index,1);
-                UpdateSerie();
+function Delete() {
+    Remove.addEventListener('click', () => {
+        const indexToRemove = Favorites.findIndex(favorite => {
+            return favorite.Name === Title_dialog.textContent && favorite.catalog === catalogo.textContent;
+        });
+        if (indexToRemove !== -1) {
+            Favorites.splice(indexToRemove, 1);
+            localStorage.setItem('Favorites', JSON.stringify(Favorites));
+            alert(`Se ha borrado ${Title_dialog.textContent} de favoritos`);
+            Ventana_modal.close();  
+            UpdateMovie();  
+            UpdateSerie();
+            
+            if (Favorites.length > 0) {
+                const nextIndex = indexToRemove < Favorites.length ? indexToRemove : Favorites.length - 1;
+                UpdateModalContent(nextIndex);
+                Ventana_modal.showModal();
             }
-        })
-        localStorage.setItem('Favorites',JSON.stringify(Favorites));
-        alert(`se ha borrado este ${Title_dialog.textContent} de favoritos`)
-        Ventana_modal.close();
+        }
         console.log(localStorage.getItem('Favorites'));
-    })
+    });
 }
 // Function actualizar la lista de peliculas
 function UpdateMovie(){
@@ -91,13 +108,7 @@ function FavoriteSerie(){
             const index = element.getAttribute('data-index');
             if(Ventana_modal){
                 Ventana_modal.showModal();
-                Imagen.src = Favorites[index].Poster;
-                Title_dialog.textContent = Favorites[index].Name;
-                Fecha_dialog.textContent = Favorites[index].Fecha;
-                catalogo.textContent = Favorites[index].catalog;
-                Tipo_movie.textContent = Favorites[index].tipo
-                Popularity.textContent = Favorites[index].popularidad;
-                Overview.textContent = Favorites[index].descripcion;
+                UpdateModal(index);
             }else{
                 console.log("No existen la ventana modal");
             }
@@ -129,20 +140,12 @@ function FavoriteMovie(){
             const index = element.getAttribute('data-index');
             if(Ventana_modal){
                 Ventana_modal.showModal();
-                Imagen.src = Favorites[index].Poster;
-                Title_dialog.textContent = Favorites[index].Name;
-                Fecha_dialog.textContent = Favorites[index].Fecha;
-                catalogo.textContent = Favorites[index].catalog;
-                Tipo_movie.textContent = Favorites[index].tipo
-                Popularity.textContent = Favorites[index].popularidad;
-                Overview.textContent = Favorites[index].descripcion;
-            
+                UpdateModal(index);
             }else{
                 console.log("No existen la ventana modal");
             }
         })
     })
-    Delete();
 
 }
 // Function para la busqueda de la pelicula o series
@@ -150,6 +153,7 @@ const Search = document.getElementById('Search--Favorite');
 Search.addEventListener('input',(e)=>{
     const value = e.target.value.trim();
     console.log(value);
+    let List = '';
     if(value == ''){
         actualizarSection();
         FavoriteMovie();
@@ -161,7 +165,7 @@ Search.addEventListener('input',(e)=>{
         Favorites.forEach((favorite,index) =>{
             const isVisble = favorite.Name.toLowerCase().includes(value.toLowerCase());
             if(isVisble){
-                List = `<div class="Movies--List" data-index=${index}>
+                List += `<div class="Movies--List" data-index=${index}>
                         <img src="${favorite.Poster}" alt="Logo">
                         <div>
                             <span id="Fecha--Movie">${favorite.Fecha}</span>
@@ -181,18 +185,13 @@ Search.addEventListener('input',(e)=>{
                     const index = element.getAttribute('data-index');
                     if(Ventana_modal){
                         Ventana_modal.showModal();
-                        Imagen.src = Favorites[index].Poster;
-                        Title_dialog.textContent = Favorites[index].Name;
-                        Fecha_dialog.textContent = Favorites[index].Fecha;
-                        catalogo.textContent = Favorites[index].catalog;
-                        Tipo_movie.textContent = Favorites[index].tipo
-                        Popularity.textContent = Favorites[index].popularidad;
-                        Overview.textContent = Favorites[index].descripcion;
+                        UpdateModal(index);
                     }else{
                         console.log("No existen la ventana");
                     }
                 })
             })
+            Delete();
         }else{
             document.getElementById('List--Movies').innerHTML = '<p>No hay</p>';
         }
