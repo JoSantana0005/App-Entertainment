@@ -199,7 +199,7 @@ Search.addEventListener('input',(e)=>{
                         // Coloco la informacion de las series e la ventana-modal
                         Imagen.src = `https://image.tmdb.org/t/p/w500/${series_list[index].Poster}`;
                         Title_dialog.textContent = `${series_list[index].name}`;
-                        Fecha_dialog.textContent = `${series_list[index].fetch}`;
+                        Fecha_dialog.textContent = `${series_list[index].Fecha}`;
                         catalogo.textContent = `${series_list[index].categoria}`;
                         Tipo_movie.textContent = `${series_list[index].Tipo}`
                         Popularity.textContent = `${series_list[index].popuralidad}`;

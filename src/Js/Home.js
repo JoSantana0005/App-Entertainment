@@ -256,6 +256,7 @@ Search.addEventListener('input',(e)=>{
     }else{
         Title.innerText = 'Found the results';
         SearchTitle();
+        LlamarOyentes();
         document.getElementsByClassName('Recomend')[0].innerHTML = '';
         movies_and_series.forEach((movie,originalIndex) =>{
             const isVisible = movie.name.toLowerCase().includes(value.toLowerCase())

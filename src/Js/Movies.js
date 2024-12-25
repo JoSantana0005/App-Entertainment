@@ -199,7 +199,7 @@ Search.addEventListener('input',(e)=>{
                         Title_dialog.textContent = `${List_movies[index].name}`;
                         Fecha_dialog.textContent = `${List_movies[index].fecha}`;
                         catalogo.textContent = `${List_movies[index].categoria}`;
-                        Tipo_movie.textContent = `${List_movies[index].tipo}`
+                        Tipo_movie.textContent = `${List_movies[index].Tipo}`
                         Popularity.textContent = `${List_movies[index].popularidad}`;
                         Overview.textContent = `${List_movies[index].Overview}`
                     }else{
