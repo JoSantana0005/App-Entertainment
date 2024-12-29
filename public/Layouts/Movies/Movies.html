@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App-Entertainment || Bookmarked</title>
-    <link rel="stylesheet" href="../../Css/Layouts/Book.css">
+    <title>App-Entertainment || Movies</title>
+    <link rel="stylesheet" href="../../Css/Layouts/Movies.css">
     <link rel="stylesheet" href="../../Css/Sidebar/Sidebar.css">
-    <link rel="stylesheet" href="../../../public/Font/Font.css">
+    <link rel="stylesheet" href="../../Font/Font.css">
     <link rel="stylesheet" href="../../Css/Body.css">
 </head>
 <body>
     <!--Nav-->
     <nav>
-        <img src="../../../public/Imagen/Movie.svg" alt="Logo">
+        <img src="../../Imagen/Movie.svg" alt="Logo">
         <ul>
             <li>
-                <a href="../../../index.html">
+                <a href="../../index.html">
                     <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#e8eaed">
                         <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm320-320v240h240v-240H520Zm0-80h240v-240H520v240Zm-80 0v-240H200v240h240Zm0 80H200v240h240v-240Z"/>
                     </svg>
                 </a>
             </li>
             <li>
-                <a href="../Movies/Movies.html">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#e8eaed">
+                <a href="Movies.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#64001b">
                         <path d="m160-800 80 160h120l-80-160h80l80 160h120l-80-160h80l80 160h120l-80-160h120q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800Zm0 240v320h640v-320H160Zm0 0v320-320Z"/>
                     </svg>
                 </a>
@@ -36,15 +36,15 @@
                 </a>
             </li>
             <li>
-                <a href="BookMarked.html">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#64001b">
+                <a href="../BookMarked/BookMarked.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#e8eaed">
                         <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/>
                     </svg>
                 </a>
             </li>
         </ul>
         <div class="Imagen--User">
-            <img src="../../../public/Imagen/Logo.jpg" alt="Logo">
+            <img src="../../Imagen/Logo.jpg" alt="Logo">
         </div>
     </nav>
     <!--Main-->
@@ -58,15 +58,19 @@
             </article>
         </section>
         <section class="Movies">
-            <h2 id="Title">Bookmarked Movies</h2>
-            <article class="List--Favorites--Movies" id="List--Favorites--Movies">
-                <div class="List--Movies" id="List--Movies"></div>
+            <article class="Title--section">
+                <h1 id="Title">Movies</h1>
+                <div>
+                    <svg id="Arrow_left" xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
+                    </svg>
+                    <svg id="Arrow_right" xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="#e8eaed">
+                        <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/>
+                    </svg>
+                </div>
             </article>
-        </section>
-        <section class="Series">
-            <h2>Bookmarked TV</h2>
-            <article class="List--favorites--Series" id="List--favorites--Series">
-                <div class="List--Series" id="List--Series"></div>
+            <article class="Movie" id="Movie">
+                <div class="List--Movie" id="List--Movie"></div>
             </article>
         </section>
     </main>
@@ -97,7 +101,7 @@
                         <span id="Popularity"></span>
                     </div>
                 </div>
-                <button id="Favorite--bookmarked">Remove to favorites</button>
+                <button id="Favorite--bookmarked">Add to favorites</button>
             </div>
             <div class="content--right">
                 <h4>Overview:</h4>
@@ -106,5 +110,5 @@
         </div>
     </dialog>
 </body>
-<script src="../../Js/Book.js"></script>
+<script src="../../Js/Movies.js"></script>
 </html>
